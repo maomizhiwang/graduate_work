@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>测试</title>
+    <script type="text/javascript" src="scrpit/three.js"></script>
+    <script>
+        function init() {
+            var renderer=new THREE.WebGLRenderer({
+                canvas:document.getElementById('mainCanvas')
+            });//利用three绑定画布
+            renderer.setClearColor(0x000000);//背景色设为黑色
+
+            var scene=new THREE.Scene();//添加场景
+            //PerspectiveCamera,OrthographicCamera
+            var camera = new THREE.OrthographicCamera(-2, 2, 1.5, -1.5, 1, 10);
+            camera.position.set(1, 0, 5);
+            scene.add(camera);
+
+            var cube = new THREE.Mesh(new THREE.CubeGeometry(1, 1, 1),
+                new THREE.MeshBasicMaterial({
+                    color: 0xff0000,
+                    wireframe: true
+                })
+            );
+            scene.add(cube);//将cube添加到场景里
+
+            renderer.render(scene, camera);//开始渲染
+        }
+    </script>
+<body onload="init()">
+<canvas id="mainCanvas" width="400px" height="300px"></canvas>
+</body>
+</html>
