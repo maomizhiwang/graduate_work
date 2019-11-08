@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>测试</title>
+    <title>形状体</title>
     <script type="text/javascript" src="../scrpit/three.js"></script>
     <script>
         function init() {
@@ -13,23 +13,41 @@
 
             var scene=new THREE.Scene();//添加场景
             //PerspectiveCamera,OrthographicCamera
-            var camera = new THREE.OrthographicCamera(-2, 2, 1.5, -1.5, 1, 10);
-            camera.position.set(5, 5, 5);
+            var camera = new THREE.OrthographicCamera(-5, 5, 3.75, -3.75, 0.1, 100);
+            camera.position.set(25, 25, 25);
             camera.lookAt(new THREE.Vector3(0,0,0))//将相机朝着原点看
             scene.add(camera);
-
-            var cube = new THREE.Mesh(new THREE.CubeGeometry(1, 1, 1),
+            //SphereGeometry球体
+            //CircleGeometry圆形
+            //TorusGeometry甜甜圈
+            var cube = new THREE.Mesh(new THREE.TorusGeometry(3,1,100,100),
                 new THREE.MeshBasicMaterial({
                     color: 0xff0000,
                     wireframe: true
                 })
             );
-            scene.add(cube);//将cube添加到场景里
 
+            scene.add(cube);//将cube添加到场景里
+            var axesHelper=new THREE.AxesHelper(100);
+            scene.add(axesHelper);
             renderer.render(scene, camera);//开始渲染
         }
     </script>
-<body onload="init()">
+    <!--<style>
+    body{text-align: center}
+    div{
+        margin: 0 auto;
+        height: 500px;
+        width: 500px;
+        padding-top: 100px;
+        padding-bottom: 100px;
+    }
+    </style>-->
+
+<body onload="init()" style="text-align: center">
+<div>
     <canvas id="mainCanvas" width="400px" height="300px"></canvas>
+</div>
+
 </body>
 </html>
